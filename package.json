@@ -16,20 +16,3 @@
     "node": ">=14"
   }
 }
-const express = require('express');
-const app = express();
-
-// 关键点1：必须使用 process.env.PORT
-// 云平台会自动分配一个端口给这个环境变量，不能写死端口
-const port = process.env.PORT || 3000;
-
-// 关键点2：必须处理根路径 '/' 的请求
-// 这样健康检查访问 http://您的域名/ 时才能得到回应
-app.get('/', (req, res) => {
-  res.send('Hello! Server is running successfully. 🚀');
-});
-
-// 启动监听
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
