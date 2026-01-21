@@ -3,77 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的导航页</title>
+    <title>我的快乐星球 🚀</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=ZCOOL+KuaiLe&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            background-image: url('http://files.unn.pp.ua/download/pictures%2Fbackground.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
+            font-family: 'ZCOOL KuaiLe', 'Fredoka One', cursive, sans-serif; /* 卡通字体 */
+            /* 背景改为蓝天白云风格 */
+            background-color: #87CEEB;
+            background-image: 
+                radial-gradient(circle, #fff 20%, transparent 20%),
+                radial-gradient(circle, #fff 20%, transparent 20%);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
             margin: 0;
             padding: 20px;
-            color: #333;
+            color: #4a4a4a;
         }
         
         .header {
             color: #fff;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-size: 40px;
+            text-align: center;
+            margin: 20px 0;
+            text-shadow: 3px 3px 0px #ff6b6b, 6px 6px 0px #4ecdc4;
+            letter-spacing: 2px;
         }
         
         .search-container {
-            padding: 3rem;
             width: 100%;
-            max-width: 500px;
-            margin: 0 auto 20px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            text-align: center;
         }
         
         .search-box {
-            width: 100%;
-            padding: 15px 18px;
-            font-size: 20px;
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            padding: 20px 30px;
+            font-size: 24px;
+            border: 5px solid #ff9f1c; /* 粗边框 */
+            border-radius: 50px;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.1);
             outline: none;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: #fff;
+            color: #555;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .search-box:focus {
+            transform: scale(1.05);
+            border-color: #ff6b6b;
         }
         
         .container {
             max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 12px;
+            /* 改为4列，按钮更大更适合儿童 */
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+            gap: 25px;
+            padding-bottom: 60px;
         }
         
         .link-item {
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            padding: 12px;
-            transition: all 0.2s;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            height: 60px;
+            background-color: #fff;
+            border-radius: 25px;
+            padding: 15px;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 弹性动画 */
+            border: 4px solid #fff;
+            height: 110px; /* 更高 */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            box-shadow: 0 10px 0 #e0e0e0; /* 3D积木效果 */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 给不同的卡片加上不同的边框颜色和阴影 */
+        .link-item:nth-child(4n+1) { border-color: #ff6b6b; box-shadow: 0 8px 0 #c44d4d; color: #ff6b6b;}
+        .link-item:nth-child(4n+2) { border-color: #4ecdc4; box-shadow: 0 8px 0 #3b9e96; color: #4ecdc4;}
+        .link-item:nth-child(4n+3) { border-color: #ffe66d; box-shadow: 0 8px 0 #cbb652; color: #d4b835;}
+        .link-item:nth-child(4n+4) { border-color: #1a535c; box-shadow: 0 8px 0 #0f363d; color: #1a535c;}
+        
+        .link-item:active {
+            transform: translateY(8px); /* 按下效果 */
+            box-shadow: 0 0 0 transparent;
         }
         
         .link-item:hover {
-            background-color: rgba(255, 255, 255, 0.85);
-            transform: translateY(-2px);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px) rotate(2deg);
         }
         
         .link-item a {
             text-decoration: none;
-            color: #333;
+            color: inherit;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -82,220 +109,167 @@
             justify-content: center;
         }
         
-        .link-icon {
-            width: 24px;
-            height: 24px;
-            margin-bottom: 8px;
+        .link-icon, .link-item i {
+            width: 50px;
+            height: 50px;
+            font-size: 40px; /* 图标变大 */
+            margin-bottom: 10px;
             object-fit: contain;
+            filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.1));
         }
         
         .link-text {
-            font-size: 14px;
+            font-size: 18px;
+            font-weight: bold;
             text-align: center;
             word-break: break-word;
-            max-width: 100%;
         }
+
         .foot_marker {
             position: fixed;
-            bottom: 10px;
+            bottom: 0;
             left: 0;
             right: 0;
             width: 100%;
             text-align: center;
-            font-size: 12px;
-            color: rgba(255,255,255,0.8);
-            z-index: 999;
-            padding: 10px 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+            font-size: 16px;
+            color: #fff;
+            padding: 15px 0;
+            background-color: #FF6B6B;
+            border-top: 5px solid #fff;
+            border-top-left-radius: 50% 20px;
+            border-top-right-radius: 50% 20px;
         }
 
         .foot_marker a {
-            color: rgba(255,255,255,0.8);
+            color: #fff;
             text-decoration: none;
-            transition: color 0.3s ease;
-            padding: 5px 10px;
-            border-radius: 15px;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
         }
 
-        .foot_marker a:hover {
-            color: #4388e0;
-        }        
+        /* 装饰性云朵 */
+        .cloud {
+            position: absolute;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50px;
+            z-index: -1;
+        }
+        .cloud:nth-child(1) { width: 100px; height: 40px; top: 10%; left: 10%; animation: float 10s infinite linear alternate;}
+        .cloud:nth-child(2) { width: 140px; height: 60px; top: 20%; right: 10%; animation: float 15s infinite linear alternate-reverse;}
+
+        @keyframes float {
+            from { transform: translateX(0); }
+            to { transform: translateX(50px); }
+        }
     </style>
 </head>
 <body>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+
+    <div class="header">
+        ☁️ 奇妙传送门 🌈
+    </div>
+
     <div class="search-container">
-        <form action="https://www.google.com/search" method="get" target="_blank">
-            <input class="search-box" type="text" name="q" placeholder="Google 搜索...">
+        <form action="https://www.baidu.com/s" method="get" target="_blank">
+            <input class="search-box" type="text" name="wd" placeholder="🔎 搜一搜动画片...">
         </form>
     </div>
     
     <div class="container">
-        <!-- 第一行 -->
         <div class="link-item">
-            <a href="https://www.google.com" target="_blank">
-                <img class="link-icon" src="https://www.google.com/favicon.ico" alt="Google">
-                <span class="link-text">Google</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://www.baidu.com" target="_blank">
-                <img class="link-icon" src="https://www.baidu.com/favicon.ico" alt="Baidu">
-                <span class="link-text">Baidu</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://www.youtube.com" target="_blank">
-                <img class="link-icon" src="https://www.youtube.com/favicon.ico" alt="YouTube">
-                <span class="link-text">Youtube</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://mail.google.com/mail/u/0/" target="_blank">
-                <img class="link-icon" src="https://mail.google.com/favicon.ico" alt="Gmail">
-                <span class="link-text">Gmail</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://github.com" target="_blank">
-                <img class="link-icon" src="https://github.com/favicon.ico" alt="GitHub">
-                <span class="link-text">GitHub</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://ip.sb" target="_blank">
-                <img class="link-icon" src="https://ip.sb/favicon.ico" alt="IP SB">
-                <span class="link-text">ip.sb</span>
-            </a>
-        </div>
-        
-        <!-- 第二行 -->
-        <div class="link-item">
-            <a href="https://dash.cloudflare.com" target="_blank">
-                <img class="link-icon" src="https://www.cloudflare.com/favicon.ico" alt="Cloudflare">
-                <span class="link-text">Cloudflare</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://chat.openai.com" target="_blank">
-                <img class="link-icon" src="https://chat.openai.com/favicon.ico" alt="ChatGPT">
-                <span class="link-text">Chatgpt</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://huggingface.co" target="_blank">
-                <img class="link-icon" src="https://huggingface.co/favicon.ico" alt="Hugging Face">
-                <span class="link-text">Huggingface</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://www.itdog.cn" target="_blank">
-                <i class="fas fa-network-wired link-icon"></i>
-                <span class="link-text">ITDOG - 在线ping</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://ping0.cc" target="_blank">
-                <i class="fas fa-database link-icon"></i>
-                <span class="link-text">Ping0</span>
+            <a href="https://www.bilibili.com" target="_blank">
+                <i class="fas fa-tv" style="color: #ff6b6b;"></i>
+                <span class="link-text">哔哩哔哩</span>
             </a>
         </div>
         <div class="link-item">
             <a href="#" target="_blank">
-                <i class="fas fa-fingerprint link-icon"></i>
-                <span class="link-text">浏览器指纹</span>
+                <i class="fas fa-shapes" style="color: #4ecdc4;"></i>
+                <span class="link-text">积木游戏</span>
+            </a>
+        </div>
+        <div class="link-item">
+            <a href="#" target="_blank">
+                <i class="fas fa-palette" style="color: #ffe66d;"></i>
+                <span class="link-text">画画板</span>
+            </a>
+        </div>
+        <div class="link-item">
+            <a href="#" target="_blank">
+                <i class="fas fa-book-open" style="color: #1a535c;"></i>
+                <span class="link-text">故事书</span>
+            </a>
+        </div>
+        <div class="link-item">
+            <a href="#" target="_blank">
+                <i class="fas fa-music" style="color: #ff9f1c;"></i>
+                <span class="link-text">儿歌多多</span>
+            </a>
+        </div>
+        <div class="link-item">
+            <a href="#" target="_blank">
+                <i class="fas fa-robot" style="color: #6a0572;"></i>
+                <span class="link-text">少儿编程</span>
             </a>
         </div>
         
-        <!-- 第三行 -->
         <div class="link-item">
-            <a href="https://ssss.nyc.mn" target="_blank">
-                <i class="fas fa-tachometer-alt link-icon"></i>
-                <span class="link-text">nezha面板</span>
+            <a href="#" target="_blank">
+                <i class="fas fa-paw" style="color: #845ec2;"></i>
+                <span class="link-text">动物园</span>
             </a>
         </div>
         <div class="link-item">
-            <a href="https://hoppscotch.io" target="_blank">
-                <img class="link-icon" src="https://discord.com/favicon.ico" alt="Discord">
-                <span class="link-text">Api测试</span>
+            <a href="#" target="_blank">
+                <i class="fas fa-space-shuttle" style="color: #0081cf;"></i>
+                <span class="link-text">太空探索</span>
             </a>
         </div>
         <div class="link-item">
-            <a href="https://who.cx" target="_blank">
-                <i class="fas fa-globe link-icon"></i>
-                <span class="link-text">who.cx</span>
+            <a href="#" target="_blank">
+                <i class="fas fa-gamepad" style="color: #ffc75f;"></i>
+                <span class="link-text">小游戏</span>
             </a>
         </div>
         <div class="link-item">
-            <a href="https://www.domcomp.com" target="_blank">
-                <i class="fas fa-tags link-icon"></i>
-                <span class="link-text">域名比价</span>
-            </a>
-        </div>
-        
-        <div class="link-item">
-            <a href="https://www.nodeseek.com" target="_blank">
-                <i class="fas fa-server link-icon"></i>
-                <span class="link-text">NodeSeek</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://linux.do" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">Linux do</span>
+            <a href="#" target="_blank">
+                <i class="fas fa-puzzle-piece" style="color: #ff9671;"></i>
+                <span class="link-text">拼图</span>
             </a>
         </div>
         
-        <!-- 第四行 -->
         <div class="link-item">
-            <a href="https://music.gvrander.eu.org" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">在线音乐</span>
-            </a>           
+            <a href="https://github.com" target="_blank">
+                <i class="fab fa-github" style="color: #333;"></i>
+                <span class="link-text">代码仓库</span>
+            </a>
         </div>
         <div class="link-item">
-            <a href="https://www.freereceivesms.com" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">免费接码</span>
-            </a> 
+            <a href="https://chat.openai.com" target="_blank">
+                <i class="fas fa-comment-dots" style="color: #2ab7ca;"></i>
+                <span class="link-text">AI 助手</span>
+            </a>
         </div>
-        <div class="link-item">
-            <a href="https://sublink.eooce.com" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">订阅转换</span>
-            </a> 
-        </div>
-        <div class="link-item">
-            <a href="https://ssh.eooce.com" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">webssh</span>
-            </a> 
-        </div>
-        <div class="link-item">
-            <a href="https://filebox.nnuu.nyc.mn" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">文件快递柜</span>
-            </a> 
-        </div>
-        <div class="link-item">
-            <a href="https://address.nnuu.nyc.mn" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">真实地址生成</span>
-            </a> 
-        </div>
+    </div>
 
-        <!-- 版权 -->
-        <div class="foot_marker">
-        <a href="https://github.com/eooce" target="_blank">Powered by eooce</a>
+    <div class="foot_marker">
+        <a href="#" target="_blank">🎈 Powered by Magic 🎈</a>
     </div>
 
     <script>
-        document.querySelectorAll('.link-item:not(.empty)').forEach(item => {
-            const icon = item.querySelector('img.link-icon');
-            if (icon) {
-                icon.onerror = function() {
-                    this.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40NzcgMiAyIDYuNDc3IDIgMTJzNC40NzcgMTAgMTAgMTAgMTAtNC40NzcgMTAtMTBTMTcuNTIzIDIgMTIgMnptMCAyYzQuNDE4IDAgOCAzLjU4MiA4IDhzLTMuNTgyIDgtOCA4LTgtMy41ODItOC04IDMuNTgyLTggOC04eiIgZmlsbD0iIzMzMyIvPjwvc3ZnPg==';
-                }
-            }
+        // 简单的点击音效逻辑（可选）
+        document.querySelectorAll('.link-item').forEach(item => {
+            item.addEventListener('mousedown', () => {
+                item.style.transform = 'scale(0.95)';
+            });
+            item.addEventListener('mouseup', () => {
+                item.style.transform = 'scale(1) translateY(-5px)';
+            });
         });
     </script>
 </body>
